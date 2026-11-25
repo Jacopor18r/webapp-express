@@ -17,7 +17,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     const body = req.body;
     console.log(body);
-
     res.send('Creazione di un nuovo prodotto');
 });
 
