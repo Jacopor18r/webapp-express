@@ -1,5 +1,8 @@
 import express from 'express';
-import products from './routers/productsRouter.js';
+import productsRouter from './routers/productsRouter.js';
+import errorsHandler from './Middlewares/errorsHandler.js';
+import notFound from './Middlewares/notFound.js';
+
 
 const app = express();
 const port = process.env.APP_PORT || 3001;
@@ -13,6 +16,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/products', productsRouter);
+
+app.use(notFound);
+app.use(errorsHandler);
 
 // Avvio del server
 app.listen(port, () =>
