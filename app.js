@@ -1,5 +1,5 @@
 import express from 'express';
-import products from './routers/products.js';
+import products from './routers/productsRouter.js';
 
 const app = express();
 const port = process.env.APP_PORT || 3001;
@@ -12,18 +12,7 @@ app.get('/', (req, res) => {
     res.send('Server express online');
 });
 
-app.use('/products', products);
-
-// Errore in caso di rotta non trovata
-app.use((req, res) => {
-    res.status(404).json({ message: "Rotta non trovata" });
-});
-
-// Errore riguardante il server
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(500).json({ message: "Errore interno del server" });
-});
+app.use('/products', productsRouter);
 
 // Avvio del server
 app.listen(port, () =>
